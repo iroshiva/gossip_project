@@ -1,6 +1,5 @@
 #Router.new.perform
 	# création d'une nouvelle instance == NOUVEL OBJET Routeur auquel on applique la méthode perform
-	# ==> ALLER DANS LA CLASS ROUTEUR ET VOIR CE QUE FAIT LA METHODE PERFORM 
 	# affiche le début du programme et demande à l'utilisateur ce qu'il faut faire
 
 
