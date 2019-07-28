@@ -19,6 +19,7 @@ class Controller
 		@view = View.new
 		# Création d'une instance de class view @view d'une nouvelle class View
 		# permet d'afficher la suite, en fonction du choix de l'utilisateur, c'est pourquoi elle est créée dans initialize
+
 	end
 
 

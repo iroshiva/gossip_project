@@ -20,6 +20,10 @@ class Router
 		# on veut qu'un "Router.new" lancé par app.rb, crée automatiquement une instance "@controller"
 		# la class routeur n'appelle aucune variable pour les instances router créées
 		# elle sert à initialiser une instance de class controller @
+
+		@prompt = TTY::Prompt.new
+		# pour la gem 'tty-prompt' == sélecteur de choix
+
 		
 	end
 
@@ -35,30 +39,40 @@ class Router
 		# boucle d'affichage infinie
 		# elle sera toujours vrai, sauf pour la 4ème option == break
 
-			puts "Bonjour à toi THPiste!"
-			puts "Que veux-tu faire?"
-			puts "Créer un gossip? Tape 1!"
-			puts "Afficher tous les gossip? Tape 2!"
-			puts "Quiter l'app? Tape 4!"
-			params = gets.chomp.to_i
+			case_choice = ["Créer un gossip?", "Afficher tous les gossip?", "Quiter l'app?"]
+			#création d'un array de choix
+
+			params = @prompt.select("Bonjour à toi THPiste!? Que veux-tu faire?", case_choice)
+			# sélecteur de choix
+
+			# puts "Bonjour à toi THPiste!"
+			# puts "Que veux-tu faire?"
+			# puts "Créer un gossip? Tape 1!"
+			# puts "Afficher tous les gossip? Tape 2!"
+			# puts "Quiter l'app? Tape 4!"
+			# params = gets.chomp.to_i
 			# variable params qui a comme valeur le choix de l'utilisateur
 
 			case params
-			when 1
-				puts "Tu as choisi de créer un gossip?"
+			when case_choice[0]
+				puts " "
+				puts "Tu as choisi de créer un gossip!"
 				@controller.create_gossip
 				# si l'utilisateur tape1 , l'instance routeur va diriger la demande de l'utilisateur vers la méthode d'instance create_gossip de l'instance de class controller créée dans la methode initialize ci-dessus
 
-			when 2
+			when case_choice[1]
+				puts " "
 				puts "Tu as choisi d'afficher tous les potins!"
 				@controller.index_gossip
 				# si l'utilisateur tape 2, l'instance routeur va diriger la demande de l'utilisateur vers la méthode d'instance index_gossip de l'instance controller crééé dans la methode initialize ci-dessus
 
-			when 4
+			when case_choice[2]
+				puts " "
 				puts "A bientôt moussaillon!"
 				# seul moyen de sortir de la boucle
 				break
 			else 
+				puts " "
 				puts "Ce choix n'existe pas, merci de ressayer!"
 			end
 		
