@@ -9,14 +9,14 @@ class Gossip
 	attr_reader :author, :content
 	# appelle les VARIABLES D'INSTANCE
 
-	def initialize(content, author)
+	def initialize(author, content)
 
 		# instancie les variables
 		@author = author
 		@content = content 
 
 		# initie un array de stockage des variables
-		@arr_gossip = [@content, @author]
+		@arr_gossip = [@author, @content]
 
 	end
 
@@ -37,9 +37,9 @@ class Gossip
 		all_gossip = []
 		# tous les gossip seront stockés dans un array
 
-		CSV.open("db/gossip.csv").each do |potin|
+		CSV.open("db/gossip.csv", "r").each do |potin|
 		# pour chaque potin, donc chaque ligne du fichier de sauvarde CSV
-		
+
 		goss_prov = Gossip.new(potin[0], potin[1])
 		# crétion d'une instance gossip == OBJET avec ces deux variables d'instance
 		# IMPORTANT: LES POTINS SAUVEGARDÉS PERDENT LEUR STATUT D'OBJET, C'EST POUR ÇA QU'IL FAUT LEUR "REDONNER VIE" EN LES CRÉANT À NOUVEAU !!!!!
@@ -52,6 +52,10 @@ class Gossip
 		
 
 		return all_gossip
+	end
+
+	def self.destroy
+		File.open('db/gossip.csv', 'w') {}
 	end
 
 end

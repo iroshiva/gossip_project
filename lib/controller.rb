@@ -56,4 +56,20 @@ class Controller
 
 	end
 
+	def destroy_gossip
+
+		all_gossip = Gossip.all 
+		# tous les gossip sous forme d'arrêt
+
+		new_arr_gossips = @view.destroy_gossip(all_gossip)
+		# envoie à la class view de lancer la méthode destroy_gossip pour l'array de tous les gossip
+		if new_arr_gossips
+			Gossip.destroy
+    	new_arr_gossips.each { |gossip| gossip.save } 
+    end
+		# après chois du potin == suppression dans le .csv
+		# sort une liste de potin avec potin supprimé
+		
+	end
+
 end

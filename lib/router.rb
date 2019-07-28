@@ -39,7 +39,7 @@ class Router
 		# boucle d'affichage infinie
 		# elle sera toujours vrai, sauf pour la 4ème option == break
 
-			case_choice = ["Créer un gossip?", "Afficher tous les gossip?", "Quiter l'app?"]
+			case_choice = ["Créer un gossip?", "Afficher tous les gossip?", "Supprimer un gossip?", "Quiter l'app?"]
 			#création d'un array de choix
 
 			params = @prompt.select("Bonjour à toi THPiste!? Que veux-tu faire?", case_choice)
@@ -65,8 +65,13 @@ class Router
 				puts "Tu as choisi d'afficher tous les potins!"
 				@controller.index_gossip
 				# si l'utilisateur tape 2, l'instance routeur va diriger la demande de l'utilisateur vers la méthode d'instance index_gossip de l'instance controller crééé dans la methode initialize ci-dessus
-
 			when case_choice[2]
+				puts " "
+				puts "Tu as choisi de supprimer un gossip!"
+				puts "Lequel veux-tu supprimer?"
+				@controller.destroy_gossip
+
+			when case_choice[3]
 				puts " "
 				puts "A bientôt moussaillon!"
 				# seul moyen de sortir de la boucle
